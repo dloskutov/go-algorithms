@@ -1,2 +1,3 @@
-# go-algorithms
+# Algorithms
+
 Algorithms in Go programming language.
