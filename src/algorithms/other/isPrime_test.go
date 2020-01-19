@@ -12,6 +12,7 @@ func TestIsPrime(t *testing.T) {
 	assert.Equal(t, true, IsPrime(233))
 	assert.Equal(t, true, IsPrime(997))
 
+	assert.Equal(t, false, IsPrime(1))
 	assert.Equal(t, false, IsPrime(4))
 	assert.Equal(t, false, IsPrime(8))
 	assert.Equal(t, false, IsPrime(81))
