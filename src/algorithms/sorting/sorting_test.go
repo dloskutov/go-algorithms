@@ -41,3 +41,10 @@ func TestInsertion(t *testing.T) {
 	Insertion(arr)
 	assert.True(t, isSorted(arr))
 }
+
+func TestShellSort(t *testing.T) {
+	arr := generateRandomArray(1000)
+
+	ShellSort(arr)
+	assert.True(t, isSorted(arr))
+}
