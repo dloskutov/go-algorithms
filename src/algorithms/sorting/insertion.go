@@ -1,6 +1,6 @@
 package sorting
 
-// Insertion - sort by selection
+// Insertion - sort by insertion
 func Insertion(array []int64) {
 	length := len(array)
 

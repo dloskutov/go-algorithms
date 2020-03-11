@@ -56,3 +56,11 @@ func TestMergeSort(t *testing.T) {
 	MergeSort(arr)
 	assert.True(t, isSorted(arr))
 }
+
+func TestQuickSort(t *testing.T) {
+	arr := generateRandomArray(1000)
+
+	Quick(arr)
+	t.Log(arr)
+	assert.True(t, isSorted(arr))
+}
