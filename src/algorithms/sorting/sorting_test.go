@@ -61,6 +61,12 @@ func TestQuickSort(t *testing.T) {
 	arr := generateRandomArray(1000)
 
 	Quick(arr)
-	t.Log(arr)
 	assert.True(t, isSorted(arr))
 }
+
+//func TestHeapSort(t *testing.T) {
+//	arr := generateRandomArray(1000)
+//
+//	HeapSort(arr)
+//	assert.True(t, isSorted(arr))
+//}
