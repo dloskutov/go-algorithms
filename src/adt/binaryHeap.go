@@ -53,7 +53,7 @@ func (heap *binaryHeap) Get() int64 {
 	newSize := len(heap.array)
 
 	index := 0
-	for index*2+1 < newSize && heap.array[index] < heap.array[index*2+1] {
+	for (index*2+1 < newSize && heap.array[index] < heap.array[index*2+1]) || (index*2+2 < newSize && heap.array[index] < heap.array[index*2+2]) {
 		leftChildIndex := index*2 + 1
 		rightChildIndex := index*2 + 2
 		leftChildValue := heap.array[leftChildIndex]
