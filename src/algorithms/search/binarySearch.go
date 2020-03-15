@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-// BinarySearch - sequential search by key
+// BinarySearch - binary search by key
 type BinarySearch struct {
 	keys   []string
 	values []int64

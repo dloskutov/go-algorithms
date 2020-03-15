@@ -51,3 +51,33 @@ func TestBinarySearch(t *testing.T) {
 	assert.Equal(t, int64(45), value)
 	assert.Nil(t, err)
 }
+
+func TestBinarySearchTree(t *testing.T) {
+	binarySearchTree := new(BinarySearchTree)
+
+	value, err := binarySearchTree.Get("non-exist key")
+	assert.Equal(t, int64(0), value)
+	assert.Error(t, err)
+
+	binarySearchTree.Put("g", 40)
+	binarySearchTree.Put("h", 80)
+	binarySearchTree.Put("a", 10)
+	binarySearchTree.Put("c", 20)
+	binarySearchTree.Put("e", 30)
+	binarySearchTree.Put("b", 50)
+	binarySearchTree.Put("d", 60)
+	binarySearchTree.Put("f", 70)
+
+	value, err = binarySearchTree.Get("c")
+	assert.Equal(t, int64(20), value)
+	assert.Nil(t, err)
+
+	binarySearchTree.Put("g", 100)
+	value, err = binarySearchTree.Get("g")
+	assert.Equal(t, int64(100), value)
+	assert.Nil(t, err)
+
+	value, err = binarySearchTree.Get("f")
+	assert.Equal(t, int64(70), value)
+	assert.Nil(t, err)
+}
