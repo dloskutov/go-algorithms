@@ -81,3 +81,130 @@ func TestBinarySearchTree(t *testing.T) {
 	assert.Equal(t, int64(70), value)
 	assert.Nil(t, err)
 }
+
+func TestTwoThreeSearchTree(t *testing.T) {
+	twoThreeSearchTree := new(TwoThreeSearchTree)
+
+	value, err := twoThreeSearchTree.Get("non-exist key")
+	assert.Equal(t, int64(0), value)
+	assert.Error(t, err)
+
+	arr := []struct {
+		key   string
+		value int64
+	}{
+		{
+			key:   "b",
+			value: 4,
+		},
+		{
+			key:   "a",
+			value: 8,
+		},
+		{
+			key:   "r",
+			value: 10,
+		},
+		{
+			key:   "n",
+			value: 7,
+		},
+		{
+			key:   "o",
+			value: 3,
+		},
+		{
+			key:   "i",
+			value: 9,
+		},
+		{
+			key:   "x",
+			value: 2,
+		},
+		{
+			key:   "s",
+			value: 86,
+		},
+		{
+			key:   "y",
+			value: 31,
+		},
+		{
+			key:   "m",
+			value: 0,
+		},
+		{
+			key:   "df",
+			value: 3,
+		},
+		{
+			key:   "l",
+			value: 82,
+		},
+		{
+			key:   "o",
+			value: 3,
+		},
+		{
+			key:   "i",
+			value: 9,
+		},
+		{
+			key:   "x",
+			value: 2,
+		},
+		{
+			key:   "s",
+			value: 86,
+		},
+		{
+			key:   "p",
+			value: 3,
+		},
+		{
+			key:   "y",
+			value: 9,
+		},
+		{
+			key:   "v",
+			value: 2,
+		},
+		{
+			key:   "c",
+			value: 86,
+		},
+		{
+			key:   "q",
+			value: 3,
+		},
+	}
+
+	for _, item := range arr {
+		twoThreeSearchTree.Put(item.key, item.value)
+	}
+
+	value, err = twoThreeSearchTree.Get("r")
+	assert.Equal(t, int64(10), value)
+	assert.Nil(t, err)
+
+	twoThreeSearchTree.Put("g", 100)
+	value, err = twoThreeSearchTree.Get("g")
+	assert.Equal(t, int64(100), value)
+	assert.Nil(t, err)
+
+	value, err = twoThreeSearchTree.Get("a")
+	assert.Equal(t, int64(8), value)
+	assert.Nil(t, err)
+
+	value, err = twoThreeSearchTree.Get("v")
+	assert.Equal(t, int64(2), value)
+	assert.Nil(t, err)
+
+	value, err = twoThreeSearchTree.Get("c")
+	assert.Equal(t, int64(86), value)
+	assert.Nil(t, err)
+
+	value, err = twoThreeSearchTree.Get("p")
+	assert.Equal(t, int64(3), value)
+	assert.Nil(t, err)
+}

@@ -12,15 +12,15 @@ type nodeBST struct {
 	rightChild *nodeBST
 }
 
-// BinarySearchTree - sequential search by key
+// BinarySearchTree - binary search tree by key
 type BinarySearchTree struct {
 	root *nodeBST
 }
 
 // Put - put value by key to the tree
-func (bs *BinarySearchTree) Put(key string, value int64) {
-	if bs.root == nil {
-		bs.root = &nodeBST{
+func (bst *BinarySearchTree) Put(key string, value int64) {
+	if bst.root == nil {
+		bst.root = &nodeBST{
 			key:        key,
 			value:      value,
 			leftChild:  nil,
@@ -29,7 +29,7 @@ func (bs *BinarySearchTree) Put(key string, value int64) {
 		return
 	}
 
-	node := bs.root
+	node := bst.root
 
 	for {
 		compareKey := strings.Compare(key, node.key)
@@ -68,8 +68,8 @@ func (bs *BinarySearchTree) Put(key string, value int64) {
 }
 
 // Get - search value by key
-func (bs *BinarySearchTree) Get(key string) (int64, error) {
-	node := bs.root
+func (bst *BinarySearchTree) Get(key string) (int64, error) {
+	node := bst.root
 
 	for {
 		if node == nil {
