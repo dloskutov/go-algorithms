@@ -71,22 +71,15 @@ func (bst *BinarySearchTree) Put(key string, value int64) {
 func (bst *BinarySearchTree) Get(key string) (int64, error) {
 	node := bst.root
 
-	for {
-		if node == nil {
-			break
-		}
-
-		compareKey := strings.Compare(key, node.key)
-		if compareKey == 0 {
+	for node != nil {
+		if node.key == key {
 			return node.value, nil
 		}
-		if compareKey < 0 {
+
+		if strings.Compare(key, node.key) < 0 {
 			node = node.leftChild
-			continue
-		}
-		if compareKey > 0 {
+		} else {
 			node = node.rightChild
-			continue
 		}
 	}
 
