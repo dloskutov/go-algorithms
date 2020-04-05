@@ -419,3 +419,214 @@ func TestRedBlackBinarySearchTree(t *testing.T) {
 	assert.Equal(t, int64(2), value)
 	assert.Nil(t, err)
 }
+
+func TestSeparateChainingHashTable(t *testing.T) {
+	hashTable := new(SeparateChainingHashTable)
+
+	value, err := hashTable.Get("non-exist key")
+	assert.Equal(t, int64(0), value)
+	assert.Error(t, err)
+
+	arr := []struct {
+		key   string
+		value int64
+	}{
+		{
+			key:   "b",
+			value: 4,
+		},
+		{
+			key:   "a",
+			value: 8,
+		},
+		{
+			key:   "r",
+			value: 10,
+		},
+		{
+			key:   "n",
+			value: 7,
+		},
+		{
+			key:   "o",
+			value: 3,
+		},
+		{
+			key:   "i",
+			value: 9,
+		},
+		{
+			key:   "x",
+			value: 2,
+		},
+		{
+			key:   "s",
+			value: 86,
+		},
+		{
+			key:   "y",
+			value: 31,
+		},
+		{
+			key:   "m",
+			value: 0,
+		},
+		{
+			key:   "df",
+			value: 3,
+		},
+		{
+			key:   "l",
+			value: 82,
+		},
+		{
+			key:   "o",
+			value: 3,
+		},
+		{
+			key:   "i",
+			value: 9,
+		},
+		{
+			key:   "x",
+			value: 2,
+		},
+		{
+			key:   "s",
+			value: 86,
+		},
+		{
+			key:   "p",
+			value: 3,
+		},
+		{
+			key:   "y",
+			value: 9,
+		},
+		{
+			key:   "v",
+			value: 2,
+		},
+		{
+			key:   "c",
+			value: 86,
+		},
+		{
+			key:   "q",
+			value: 3,
+		},
+		{
+			key:   "we",
+			value: 48,
+		},
+		{
+			key:   "eb",
+			value: 82,
+		},
+		{
+			key:   "ktr",
+			value: 103,
+		},
+		{
+			key:   "aasn",
+			value: 73,
+		},
+		{
+			key:   "qo",
+			value: 32,
+		},
+		{
+			key:   "mni",
+			value: 94,
+		},
+		{
+			key:   "opx",
+			value: 23,
+		},
+		{
+			key:   "zs",
+			value: 86,
+		},
+		{
+			key:   "ty",
+			value: 331,
+		},
+		{
+			key:   "prm",
+			value: 32,
+		},
+		{
+			key:   "adf",
+			value: 3,
+		},
+		{
+			key:   "wl",
+			value: 898,
+		},
+		{
+			key:   "owr",
+			value: 33,
+		},
+		{
+			key:   "ji",
+			value: 9,
+		},
+		{
+			key:   "sx",
+			value: 2,
+		},
+		{
+			key:   "ts",
+			value: 86,
+		},
+		{
+			key:   "up",
+			value: 3,
+		},
+		{
+			key:   "xy",
+			value: 9,
+		},
+		{
+			key:   "vnv",
+			value: 2,
+		},
+		{
+			key:   "pc",
+			value: 86,
+		},
+	}
+
+	for _, item := range arr {
+		hashTable.Put(item.key, item.value)
+	}
+
+	value, err = hashTable.Get("r")
+	assert.Equal(t, int64(10), value)
+	assert.Nil(t, err)
+
+	hashTable.Put("g", 100)
+	value, err = hashTable.Get("g")
+	assert.Equal(t, int64(100), value)
+	assert.Nil(t, err)
+
+	value, err = hashTable.Get("a")
+	assert.Equal(t, int64(8), value)
+	assert.Nil(t, err)
+
+	value, err = hashTable.Get("v")
+	assert.Equal(t, int64(2), value)
+	assert.Nil(t, err)
+
+	value, err = hashTable.Get("c")
+	assert.Equal(t, int64(86), value)
+	assert.Nil(t, err)
+
+	value, err = hashTable.Get("p")
+	assert.Equal(t, int64(3), value)
+	assert.Nil(t, err)
+
+	value, err = hashTable.Get("vnv")
+	assert.Equal(t, int64(2), value)
+	assert.Nil(t, err)
+}
