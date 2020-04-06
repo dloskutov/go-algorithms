@@ -1,36 +1,37 @@
 package ds
 
-type vertex struct {
-	value            int64
-	adjacentVertices []*vertex
+// Vertex - graph vertex
+type Vertex struct {
+	Value            int64
+	AdjacentVertices []*Vertex
 }
 
 // Graph - undirected graph
 type Graph struct {
-	vertices []*vertex
+	vertices []*Vertex
 }
 
 // NewGraph - create graph based on edges
 func NewGraph(edges [][]int64) *Graph {
 	graph := &Graph{
-		vertices: make([]*vertex, 0),
+		vertices: make([]*Vertex, 0),
 	}
 
 	for _, edge := range edges {
-		leftVertex := graph.getVertexByValue(edge[0])
-		rightVertex := graph.getVertexByValue(edge[1])
+		leftVertex := graph.GetVertexByValue(edge[0])
+		rightVertex := graph.GetVertexByValue(edge[1])
 
 		if leftVertex == nil {
-			leftVertex = &vertex{
-				value:            edge[0],
-				adjacentVertices: make([]*vertex, 0),
+			leftVertex = &Vertex{
+				Value:            edge[0],
+				AdjacentVertices: make([]*Vertex, 0),
 			}
 			graph.vertices = append(graph.vertices, leftVertex)
 		}
 		if rightVertex == nil {
-			rightVertex = &vertex{
-				value:            edge[1],
-				adjacentVertices: make([]*vertex, 0),
+			rightVertex = &Vertex{
+				Value:            edge[1],
+				AdjacentVertices: make([]*Vertex, 0),
 			}
 			graph.vertices = append(graph.vertices, rightVertex)
 		}
@@ -44,31 +45,32 @@ func NewGraph(edges [][]int64) *Graph {
 // HasVertexWithValue - check if graph has vertex with specific value
 func (g *Graph) HasVertexWithValue(value int64) bool {
 	for _, vertex := range g.vertices {
-		if vertex.value == value {
+		if vertex.Value == value {
 			return true
 		}
 	}
 	return false
 }
 
-func (g *Graph) getVertexByValue(value int64) *vertex {
+// GetVertexByValue - get vertex by value
+func (g *Graph) GetVertexByValue(value int64) *Vertex {
 	for _, vertex := range g.vertices {
-		if vertex.value == value {
+		if vertex.Value == value {
 			return vertex
 		}
 	}
 	return nil
 }
 
-func (v *vertex) addAdjacentVertex(vertexToAdd *vertex) {
+func (v *Vertex) addAdjacentVertex(vertexToAdd *Vertex) {
 	hasVertex := false
-	for _, vertex := range v.adjacentVertices {
-		if vertex == vertexToAdd {
+	for index := range v.AdjacentVertices {
+		if v.AdjacentVertices[index] == vertexToAdd {
 			hasVertex = true
 			break
 		}
 	}
 	if !hasVertex {
-		v.adjacentVertices = append(v.adjacentVertices, vertexToAdd)
+		v.AdjacentVertices = append(v.AdjacentVertices, vertexToAdd)
 	}
 }
