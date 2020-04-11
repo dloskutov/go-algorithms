@@ -35,6 +35,11 @@ func NewDirectedGraph(edges [][]int64) *DirectedGraph {
 	return graph
 }
 
+// GetVertices - get all vertices
+func (g *DirectedGraph) GetVertices() []*Vertex {
+	return g.vertices
+}
+
 // HasVertexWithValue - check if graph has vertex with specific value
 func (g *DirectedGraph) HasVertexWithValue(value int64) bool {
 	for _, vertex := range g.vertices {

@@ -1,11 +1,5 @@
 package ds
 
-// Vertex - graph vertex
-type Vertex struct {
-	Value            int64
-	AdjacentVertices []*Vertex
-}
-
 // Graph - undirected graph
 type Graph struct {
 	vertices []*Vertex
@@ -42,6 +36,11 @@ func NewGraph(edges [][]int64) *Graph {
 	return graph
 }
 
+// GetVertices - get all graph vertices
+func (g *Graph) GetVertices() []*Vertex {
+	return g.vertices
+}
+
 // HasVertexWithValue - check if graph has vertex with specific value
 func (g *Graph) HasVertexWithValue(value int64) bool {
 	for _, vertex := range g.vertices {
@@ -60,6 +59,12 @@ func (g *Graph) GetVertexByValue(value int64) *Vertex {
 		}
 	}
 	return nil
+}
+
+// Vertex - graph vertex
+type Vertex struct {
+	Value            int64
+	AdjacentVertices []*Vertex
 }
 
 func (v *Vertex) addAdjacentVertex(vertexToAdd *Vertex) {
