@@ -20,11 +20,15 @@ func TestEdgeGraph(t *testing.T) {
 
 	edge, err := graph.GetEdge(3, 4)
 	assert.Nil(t, err)
-	assert.Equal(t, int64(3), edge.VertexFrom.Value)
-	assert.Equal(t, int64(4), edge.VertexTo.Value)
+	assert.Equal(t, int64(3), edge.VertexOne.Value)
+	assert.Equal(t, int64(4), edge.VertexTwo.Value)
 
 	assert.Equal(t, 7, len(graph.GetEdges()))
 
 	_, err = graph.GetEdge(4, 11)
 	assert.NotNil(t, err)
+
+	vertices := graph.GetVertices()
+	edges := graph.GetAllVertexEdges(vertices[0])
+	assert.Equal(t, 3, len(edges))
 }
