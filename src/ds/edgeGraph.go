@@ -2,7 +2,7 @@ package ds
 
 import "fmt"
 
-// EdgeGraph - graph based on edges data strcture
+// EdgeGraph - graph based on edges data structure
 type EdgeGraph struct {
 	edges []*Edge
 }
