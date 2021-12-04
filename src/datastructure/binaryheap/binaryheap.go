@@ -21,14 +21,14 @@ func (h *binaryHeap) Insert(elem *Element) {
 	// @TODO: need to implement
 }
 
-func (h *binaryHeap) Remove(elem *Element) bool {
+func (h *binaryHeap) Remove(elem *Element) error {
 	// @TODO: need to implement
-	return false
+	return nil
 }
 
-func (h *binaryHeap) Update(elem *Element) bool {
+func (h *binaryHeap) Update(elem *Element) error {
 	// @TODO: need to implement
-	return false
+	return nil
 }
 
 func (h *binaryHeap) Top() *Element {
