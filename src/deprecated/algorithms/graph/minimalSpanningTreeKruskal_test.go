@@ -3,11 +3,11 @@ package graph
 import (
 	"testing"
 
-	"github.com/dloskutov/go-algorithms/src/ds"
+	"github.com/dloskutov/go-algorithms/src/deprecated/ds"
 	"github.com/stretchr/testify/assert"
 )
 
-func TestMinimalSpanningTree(t *testing.T) {
+func TestMinimalSpanningTreeKruskal(t *testing.T) {
 	graph, err := ds.NewEdgeGraph([][]int64{
 		[]int64{1, 3, 1},
 		[]int64{4, 5, 3},
@@ -16,7 +16,7 @@ func TestMinimalSpanningTree(t *testing.T) {
 	})
 	assert.Nil(t, err)
 
-	edges, err := MinimalSpanningTreePrim(graph)
+	edges, err := MinimalSpanningTreeKruskal(graph)
 	assert.Nil(t, err)
 	assert.Equal(t, 4, len(edges))
 
@@ -29,7 +29,7 @@ func TestMinimalSpanningTree(t *testing.T) {
 		[]int64{2, 3, 1},
 	})
 
-	edges, err = MinimalSpanningTreePrim(secondGraph)
+	edges, err = MinimalSpanningTreeKruskal(secondGraph)
 	assert.Nil(t, err)
 	var weight int64
 	for _, edge := range edges {

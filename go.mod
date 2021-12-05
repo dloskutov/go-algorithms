@@ -1,5 +1,5 @@
 module github.com/dloskutov/go-algorithms
 
-go 1.14
+go 1.17
 
-require github.com/stretchr/testify v1.5.1
+require github.com/stretchr/testify v1.7.0

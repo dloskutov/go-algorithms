@@ -1,7 +1,7 @@
 package graph
 
 import (
-	"github.com/dloskutov/go-algorithms/src/ds"
+	"github.com/dloskutov/go-algorithms/src/deprecated/ds"
 )
 
 // IsDirectedAcyclicGraph - check if direct graph has no cycles

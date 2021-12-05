@@ -1,7 +1,7 @@
 package graph
 
 import (
-	"github.com/dloskutov/go-algorithms/src/ds"
+	"github.com/dloskutov/go-algorithms/src/deprecated/ds"
 )
 
 // BreadthFirstSearch - check if there is path

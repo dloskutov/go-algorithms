@@ -3,7 +3,7 @@ package graph
 import (
 	"testing"
 
-	"github.com/dloskutov/go-algorithms/src/ds"
+	"github.com/dloskutov/go-algorithms/src/deprecated/ds"
 	"github.com/stretchr/testify/assert"
 )
 

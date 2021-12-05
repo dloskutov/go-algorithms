@@ -3,7 +3,7 @@ package graph
 import (
 	"fmt"
 
-	"github.com/dloskutov/go-algorithms/src/ds"
+	"github.com/dloskutov/go-algorithms/src/deprecated/ds"
 )
 
 // MinimalSpanningTreePrim - build minimal spanning tree based on Prim's algorithm

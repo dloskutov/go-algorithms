@@ -3,7 +3,7 @@ package graph
 import (
 	"fmt"
 
-	"github.com/dloskutov/go-algorithms/src/ds"
+	"github.com/dloskutov/go-algorithms/src/deprecated/ds"
 )
 
 // TopologicalSort - return verices of directed graph in topological sort
