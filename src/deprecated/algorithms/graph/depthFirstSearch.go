@@ -7,7 +7,7 @@ import (
 // DepthFirstSearch - check if there is path
 // from vertex with sourceValue to vertex with checkValue
 func DepthFirstSearch(graph *ds.Graph, sourceValue int64, checkValue int64) bool {
-	marked := make(map[int64]bool, 0)
+	marked := make(map[int64]bool)
 
 	sourceVertex := graph.GetVertexByValue(sourceValue)
 	if sourceVertex != nil {

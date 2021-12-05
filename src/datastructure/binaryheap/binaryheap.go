@@ -12,44 +12,44 @@ type Element struct {
 	Value    int
 }
 
-type binaryHeap struct {
+type structure struct {
 	heapType heapType
 	array    []*Element
 }
 
-func (h *binaryHeap) Insert(elem *Element) {
+func (s *structure) Insert(elem *Element) {
 	// @TODO: need to implement
 }
 
-func (h *binaryHeap) Remove(elem *Element) error {
-	// @TODO: need to implement
-	return nil
-}
-
-func (h *binaryHeap) Update(elem *Element) error {
+func (s *structure) Remove(elem *Element) error {
 	// @TODO: need to implement
 	return nil
 }
 
-func (h *binaryHeap) Top() *Element {
+func (s *structure) Update(elem *Element) error {
 	// @TODO: need to implement
 	return nil
 }
 
-func (h *binaryHeap) Peek() *Element {
+func (s *structure) Top() *Element {
 	// @TODO: need to implement
 	return nil
 }
 
-func New(elements []*Element, heapType heapType) *binaryHeap {
-	h := &binaryHeap{
+func (s *structure) Peek() *Element {
+	// @TODO: need to implement
+	return nil
+}
+
+func New(elements []*Element, heapType heapType) *structure {
+	s := &structure{
 		heapType: heapType,
 		array:    make([]*Element, len(elements)),
 	}
 
 	for i := range elements {
-		h.Insert(elements[i])
+		s.Insert(elements[i])
 	}
 
-	return h
+	return s
 }

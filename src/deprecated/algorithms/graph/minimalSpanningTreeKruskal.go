@@ -11,7 +11,7 @@ func MinimalSpanningTreeKruskal(graph *ds.EdgeGraph) ([]*ds.Edge, error) {
 	vertices := graph.GetVertices()
 	MSTEdges := make([]*ds.Edge, 0)
 	cc := connectedComponents{
-		vertexValueToIndex: make(map[int64]int64, 0),
+		vertexValueToIndex: make(map[int64]int64),
 	}
 
 	for _, vertex := range vertices {

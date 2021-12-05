@@ -6,9 +6,9 @@ import (
 
 // IsDirectedAcyclicGraph - check if direct graph has no cycles
 func IsDirectedAcyclicGraph(graph *ds.DirectedGraph) bool {
-	notVisitedVertices := make(map[int64]bool, 0)
-	inProgressVertices := make(map[int64]bool, 0)
-	visitedVertices := make(map[int64]bool, 0)
+	notVisitedVertices := make(map[int64]bool)
+	inProgressVertices := make(map[int64]bool)
+	visitedVertices := make(map[int64]bool)
 
 	for _, vertex := range graph.GetVertices() {
 		notVisitedVertices[vertex.Value] = true

@@ -9,8 +9,8 @@ import (
 
 // ShortestPathInDirectedEdgeGraph - find the shortest path in directed edge graph
 func ShortestPathInDirectedEdgeGraph(graph *ds.DirectedEdgeGraph, fromValue int64, toValue int64) (int64, error) {
-	distTo := make(map[*ds.Vertex]int64, 0)
-	edgeTo := make(map[*ds.Vertex]*ds.DirectedEdge, 0)
+	distTo := make(map[*ds.Vertex]int64)
+	edgeTo := make(map[*ds.Vertex]*ds.DirectedEdge)
 	edgesToExplore := make([]*ds.DirectedEdge, 0)
 	vertices := graph.GetVertices()
 	var sourceVertex *ds.Vertex

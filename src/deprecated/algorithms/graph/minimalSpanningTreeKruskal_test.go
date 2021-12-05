@@ -19,21 +19,4 @@ func TestMinimalSpanningTreeKruskal(t *testing.T) {
 	edges, err := MinimalSpanningTreeKruskal(graph)
 	assert.Nil(t, err)
 	assert.Equal(t, 4, len(edges))
-
-	secondGraph, err := ds.NewEdgeGraph([][]int64{
-		[]int64{2, 1, 2},
-		[]int64{1, 3, 1},
-		[]int64{3, 4, 4},
-		[]int64{4, 2, 1},
-		[]int64{2, 3, 1},
-		[]int64{2, 3, 1},
-	})
-
-	edges, err = MinimalSpanningTreeKruskal(secondGraph)
-	assert.Nil(t, err)
-	var weight int64
-	for _, edge := range edges {
-		weight += edge.Weight
-	}
-	assert.Equal(t, int64(3), weight)
 }
