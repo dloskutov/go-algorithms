@@ -8,5 +8,5 @@ lint:
 	golangci-lint run
 
 test: update
-	go test ./... -coverprofile=coverage.out; \
+	go test ${go list ./... | grep -v 'deprecated'} -coverprofile=coverage.out; \
 	go tool cover -func=coverage.out
