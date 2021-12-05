@@ -15,10 +15,7 @@ func (s *structure) Add(value int) {
 }
 
 func (s *structure) Remove(index int) error {
-	if index < 0 {
-		return ErrInvalidIndex
-	}
-	if index >= s.Size() {
+	if index < 0 || index >= s.Size() {
 		return ErrInvalidIndex
 	}
 	for index < s.Size()-1 {
@@ -30,10 +27,7 @@ func (s *structure) Remove(index int) error {
 }
 
 func (s *structure) Update(index int, value int) error {
-	if index < 0 {
-		return ErrInvalidIndex
-	}
-	if index >= s.Size() {
+	if index < 0 || index >= s.Size() {
 		return ErrInvalidIndex
 	}
 	s.items[index] = value
@@ -41,13 +35,9 @@ func (s *structure) Update(index int, value int) error {
 }
 
 func (s *structure) Get(index int) (int, error) {
-	if index < 0 {
+	if index < 0 || index >= s.Size() {
 		return 0, ErrInvalidIndex
 	}
-	if index >= s.Size() {
-		return 0, ErrInvalidIndex
-	}
-
 	return s.items[index], nil
 }
 
