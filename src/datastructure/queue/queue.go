@@ -1,18 +1,38 @@
 package queue
 
-type structure struct{}
+import "fmt"
 
-func (s *structure) Enqueue(elem int) {
-	// @TODO: need to implement
+var ErrEmpty = fmt.Errorf("queue is empty")
+
+type structure struct {
+	items []int
+}
+
+func (s *structure) Enqueue(value int) {
+	s.items = append(s.items, value)
 }
 
 func (s *structure) Dequeue() (int, error) {
-	// @TODO: need to implement
-	return 0, nil
+	if s.Size() == 0 {
+		return 0, ErrEmpty
+	}
+	value := s.items[0]
+	s.items = s.items[1:]
+	return value, nil
+}
+
+func (s *structure) Size() int {
+	return len(s.items)
 }
 
 func New(elements []int) *structure {
-	s := &structure{}
+	s := &structure{
+		items: make([]int, len(elements)),
+	}
+
+	for i := range elements {
+		s.items[i] = elements[i]
+	}
 
 	return s
 }
