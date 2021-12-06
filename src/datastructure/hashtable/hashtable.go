@@ -1,9 +1,37 @@
 package hashtable
 
-type structure struct{}
+import (
+	"fmt"
 
-func (s *structure) Put(key string, value int) {
-	// @TODO: need to implement
+	"github.com/dloskutov/go-algorithms/src/datastructure/array"
+	"github.com/dloskutov/go-algorithms/src/datastructure/linkedlist"
+)
+
+var ErrInvalidKey = fmt.Errorf("invalid key")
+
+const hashMod = 127
+
+type node struct {
+	key   string
+	value interface{}
+}
+
+type structure struct {
+	table *array.Array
+}
+
+func (s *structure) Put(key string, value interface{}) error {
+	keyIndex := hash(key)
+	linkedList, err := s.table.Get(keyIndex)
+	if err != nil {
+		return ErrInvalidKey
+	}
+	linkedList.(*linkedlist.LinkedList).Add(&node{
+		key:   key,
+		value: value,
+	})
+
+	return nil
 }
 
 func (s *structure) Remove(key string) error {
@@ -11,20 +39,63 @@ func (s *structure) Remove(key string) error {
 	return nil
 }
 
-func (s *structure) Update(key int, value int) error {
+func (s *structure) Update(key string, value interface{}) error {
 	// @TODO: need to implement
 	return nil
 }
 
-func (s *structure) Get(key string) (int, error) {
-	// @TODO: need to implement
-	return 0, nil
+func (s *structure) Get(key string) (interface{}, error) {
+	keyIndex := hash(key)
+	linkedListRaw, err := s.table.Get(keyIndex)
+	if err != nil {
+		return 0, ErrInvalidKey
+	}
+	linkedList := linkedListRaw.(*linkedlist.LinkedList)
+
+	size := linkedList.Size()
+	index := 0
+	for index < size {
+		nodeRaw, err := linkedList.Get(index)
+		if err != nil {
+			return 0, ErrInvalidKey
+		}
+		n := nodeRaw.(*node)
+		if n.key == key {
+			return n.value, nil
+		}
+		index++
+	}
+
+	return 0, ErrInvalidKey
 }
 
-func New(keyValues map[string]int) *structure {
-	s := &structure{}
+func New(keyValues map[string]interface{}) (*structure, error) {
+	s := &structure{
+		table: array.New(nil),
+	}
 
-	// @TODO: need to implement
+	index := 0
+	for index < hashMod {
+		index++
+		s.table.Add(linkedlist.New(nil))
+	}
 
-	return s
+	for key, value := range keyValues {
+		err := s.Put(key, value)
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	return s, nil
+}
+
+func hash(key string) int {
+	value := 0
+
+	for _, r := range key {
+		value += int(r)
+	}
+
+	return value % hashMod
 }

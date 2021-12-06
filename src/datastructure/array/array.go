@@ -6,15 +6,15 @@ var (
 	ErrInvalidIndex = fmt.Errorf("invalid index")
 )
 
-type structure struct {
-	items []int
+type Array struct {
+	items []interface{}
 }
 
-func (s *structure) Add(value int) {
+func (s *Array) Add(value interface{}) {
 	s.items = append(s.items, value)
 }
 
-func (s *structure) Remove(index int) error {
+func (s *Array) Remove(index int) error {
 	if index < 0 || index >= s.Size() {
 		return ErrInvalidIndex
 	}
@@ -26,7 +26,7 @@ func (s *structure) Remove(index int) error {
 	return nil
 }
 
-func (s *structure) Update(index int, value int) error {
+func (s *Array) Update(index int, value interface{}) error {
 	if index < 0 || index >= s.Size() {
 		return ErrInvalidIndex
 	}
@@ -34,20 +34,20 @@ func (s *structure) Update(index int, value int) error {
 	return nil
 }
 
-func (s *structure) Get(index int) (int, error) {
+func (s *Array) Get(index int) (interface{}, error) {
 	if index < 0 || index >= s.Size() {
 		return 0, ErrInvalidIndex
 	}
 	return s.items[index], nil
 }
 
-func (s *structure) Size() int {
+func (s *Array) Size() int {
 	return len(s.items)
 }
 
-func New(elements []int) *structure {
-	a := &structure{
-		items: make([]int, len(elements)),
+func New(elements []interface{}) *Array {
+	a := &Array{
+		items: make([]interface{}, len(elements)),
 	}
 
 	for i := range elements {

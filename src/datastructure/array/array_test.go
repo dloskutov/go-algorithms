@@ -7,13 +7,13 @@ import (
 )
 
 func TestNew(t *testing.T) {
-	s := New([]int{1})
+	s := New([]interface{}{1})
 
 	assert.NotNil(t, s)
 }
 
 func TestGet(t *testing.T) {
-	s := New([]int{1, 2, 3, 4})
+	s := New([]interface{}{1, 2, 3, 4})
 
 	value, err := s.Get(2)
 	assert.Equal(t, nil, err)
@@ -27,13 +27,13 @@ func TestGet(t *testing.T) {
 }
 
 func TestSize(t *testing.T) {
-	s := New([]int{1, 2, 3, 4})
+	s := New([]interface{}{1, 2, 3, 4})
 
 	assert.Equal(t, 4, s.Size())
 }
 
 func TestRemove(t *testing.T) {
-	s := New([]int{1, 2, 3, 4})
+	s := New([]interface{}{1, 2, 3, 4})
 
 	err := s.Remove(1)
 	assert.Equal(t, nil, err)
@@ -51,7 +51,7 @@ func TestRemove(t *testing.T) {
 }
 
 func TestUpdate(t *testing.T) {
-	s := New([]int{1, 2, 3, 4})
+	s := New([]interface{}{1, 2, 3, 4})
 
 	err := s.Update(1, 10)
 	assert.Equal(t, nil, err)
@@ -68,7 +68,7 @@ func TestUpdate(t *testing.T) {
 }
 
 func TestAdd(t *testing.T) {
-	s := New([]int{1, 2, 3})
+	s := New([]interface{}{1, 2, 3})
 
 	s.Add(4)
 
