@@ -35,13 +35,53 @@ func (s *structure) Put(key string, value interface{}) error {
 }
 
 func (s *structure) Remove(key string) error {
-	// @TODO: need to implement
-	return nil
+	keyIndex := hash(key)
+	linkedListRaw, err := s.table.Get(keyIndex)
+	if err != nil {
+		return ErrInvalidKey
+	}
+	linkedList := linkedListRaw.(*linkedlist.LinkedList)
+
+	size := linkedList.Size()
+	index := 0
+	for index < size {
+		nodeRaw, err := linkedList.Get(index)
+		if err != nil {
+			return ErrInvalidKey
+		}
+		n := nodeRaw.(*node)
+		if n.key == key {
+			return linkedList.Remove(index)
+		}
+		index++
+	}
+
+	return ErrInvalidKey
 }
 
 func (s *structure) Update(key string, value interface{}) error {
-	// @TODO: need to implement
-	return nil
+	keyIndex := hash(key)
+	linkedListRaw, err := s.table.Get(keyIndex)
+	if err != nil {
+		return ErrInvalidKey
+	}
+	linkedList := linkedListRaw.(*linkedlist.LinkedList)
+
+	size := linkedList.Size()
+	index := 0
+	for index < size {
+		nodeRaw, err := linkedList.Get(index)
+		if err != nil {
+			return ErrInvalidKey
+		}
+		n := nodeRaw.(*node)
+		if n.key == key {
+			return linkedList.Update(index, value)
+		}
+		index++
+	}
+
+	return ErrInvalidKey
 }
 
 func (s *structure) Get(key string) (interface{}, error) {
