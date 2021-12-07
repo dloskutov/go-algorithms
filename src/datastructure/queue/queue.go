@@ -4,15 +4,15 @@ import "fmt"
 
 var ErrEmpty = fmt.Errorf("queue is empty")
 
-type structure struct {
+type Queue struct {
 	items []int
 }
 
-func (s *structure) Enqueue(value int) {
+func (s *Queue) Enqueue(value int) {
 	s.items = append(s.items, value)
 }
 
-func (s *structure) Dequeue() (int, error) {
+func (s *Queue) Dequeue() (int, error) {
 	if s.Size() == 0 {
 		return 0, ErrEmpty
 	}
@@ -21,12 +21,12 @@ func (s *structure) Dequeue() (int, error) {
 	return value, nil
 }
 
-func (s *structure) Size() int {
+func (s *Queue) Size() int {
 	return len(s.items)
 }
 
-func New(elements []int) *structure {
-	s := &structure{
+func New(elements []int) *Queue {
+	s := &Queue{
 		items: make([]int, len(elements)),
 	}
 

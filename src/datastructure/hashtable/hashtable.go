@@ -76,7 +76,10 @@ func (s *structure) Update(key string, value interface{}) error {
 		}
 		n := nodeRaw.(*node)
 		if n.key == key {
-			return linkedList.Update(index, value)
+			return linkedList.Update(index, &node{
+				key:   n.key,
+				value: value,
+			})
 		}
 		index++
 	}
