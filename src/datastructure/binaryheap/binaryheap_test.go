@@ -7,7 +7,38 @@ import (
 )
 
 func TestNew(t *testing.T) {
-	h := New(nil, Max)
+	h, err := New(nil, Max)
 
+	assert.Nil(t, err)
 	assert.NotNil(t, h)
+}
+
+func TestInsert_Max(t *testing.T) {
+	h, err := New(map[int]interface{}{
+		1:  "first",
+		11: "fourth",
+		22: "fifth",
+		2:  "second",
+		10: "third",
+	}, Max)
+	assert.Equal(t, nil, err)
+
+	value, err := h.Peek()
+	assert.Equal(t, nil, err)
+	assert.Equal(t, "fifth", value)
+}
+
+func TestInsert_Min(t *testing.T) {
+	h, err := New(map[int]interface{}{
+		1:  "first",
+		11: "fourth",
+		22: "fifth",
+		2:  "second",
+		10: "third",
+	}, Min)
+	assert.Equal(t, nil, err)
+
+	value, err := h.Peek()
+	assert.Equal(t, nil, err)
+	assert.Equal(t, "first", value)
 }
