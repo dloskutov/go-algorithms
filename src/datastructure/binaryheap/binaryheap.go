@@ -44,7 +44,8 @@ func (h *BinaryHeap) bubbleUp(index int) error {
 	currentNode := currentNodeRaw.(*node)
 
 	currentIndex := index
-	parentIndex := (index - 1) / 2
+	parentIndex := getParentIndex(currentIndex)
+
 	for parentIndex >= 0 {
 		parentNodeRaw, err := h.array.Get(parentIndex)
 		if err != nil {
@@ -64,7 +65,7 @@ func (h *BinaryHeap) bubbleUp(index int) error {
 
 			currentNode = parentNode
 			currentIndex = parentIndex
-			parentIndex = (index - 1) / 2
+			parentIndex = getParentIndex(currentIndex)
 		} else {
 			break
 		}
@@ -120,4 +121,11 @@ func New(elements map[int]interface{}, heapType heapType) (*BinaryHeap, error) {
 	}
 
 	return s, nil
+}
+
+func getParentIndex(index int) int {
+	if index%2 != 0 {
+		return (index - 1) / 2
+	}
+	return (index - 2) / 2
 }

@@ -136,8 +136,8 @@ func New(keyValues map[string]interface{}) (*structure, error) {
 func hash(key string) int {
 	value := 0
 
-	for _, r := range key {
-		value += int(r)
+	for index, r := range key {
+		value += int(r) + int(int(r)/(index+1))
 	}
 
 	return value % hashMod

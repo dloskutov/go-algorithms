@@ -16,10 +16,12 @@ func TestNew(t *testing.T) {
 func TestInsert_Max(t *testing.T) {
 	h, err := New(map[int]interface{}{
 		1:  "first",
+		21: "seventh",
 		11: "fourth",
 		22: "fifth",
 		2:  "second",
 		10: "third",
+		13: "sixth",
 	}, Max)
 	assert.Equal(t, nil, err)
 
@@ -31,10 +33,12 @@ func TestInsert_Max(t *testing.T) {
 func TestInsert_Min(t *testing.T) {
 	h, err := New(map[int]interface{}{
 		1:  "first",
+		21: "seventh",
 		11: "fourth",
 		22: "fifth",
 		2:  "second",
 		10: "third",
+		13: "sixth",
 	}, Min)
 	assert.Equal(t, nil, err)
 
