@@ -63,7 +63,6 @@ func (h *BinaryHeap) bubbleUp(index int) error {
 				return err
 			}
 
-			currentNode = parentNode
 			currentIndex = parentIndex
 			parentIndex = getParentIndex(currentIndex)
 		} else {
