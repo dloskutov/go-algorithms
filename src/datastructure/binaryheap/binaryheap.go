@@ -36,6 +36,11 @@ func (s *BinaryHeap) Insert(priority int, value interface{}) error {
 	return s.bubbleUp(index)
 }
 
+func (h *BinaryHeap) bubbleDown(index int) error {
+	// @TODO: need to implement
+	return nil
+}
+
 func (h *BinaryHeap) bubbleUp(index int) error {
 	currentNodeRaw, err := h.array.Get(index)
 	if err != nil {
@@ -74,7 +79,7 @@ func (h *BinaryHeap) bubbleUp(index int) error {
 }
 
 func (h *BinaryHeap) Remove(priority int) error {
-	// @TODO: need to implement
+
 	return nil
 }
 
@@ -84,8 +89,42 @@ func (h *BinaryHeap) Update(priority int, newPriority int) error {
 }
 
 func (h *BinaryHeap) Top() (interface{}, error) {
-	// @TODO: need to implement
-	return nil, nil
+	if h.array.Size() == 0 {
+		return nil, ErrBinaryHeapIsEmpty
+	}
+	nodeRaw, err := h.array.Get(0)
+	if err != nil {
+		return nil, err
+	}
+	n := nodeRaw.(*node)
+
+	if h.array.Size() == 1 {
+		err = h.array.Remove(0)
+		if err != nil {
+			return nil, err
+		}
+	} else {
+		lastNodeIndex := h.array.Size() - 1
+		lastNodeRaw, err := h.array.Get(lastNodeIndex)
+		if err != nil {
+			return nil, err
+		}
+		lastNode := lastNodeRaw.(*node)
+		err = h.array.Update(0, lastNode)
+		if err != nil {
+			return nil, err
+		}
+		err = h.array.Remove(lastNodeIndex)
+		if err != nil {
+			return nil, err
+		}
+		err = h.bubbleDown(0)
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	return n.value, nil
 }
 
 func (h *BinaryHeap) Peek() (interface{}, error) {
