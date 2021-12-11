@@ -36,8 +36,93 @@ func (s *BinaryHeap) Insert(priority int, value interface{}) error {
 	return s.bubbleUp(index)
 }
 
+func (h *BinaryHeap) compare(leftChildIndex int, rightChildIndex int) int {
+	leftChildRaw, err := h.array.Get(leftChildIndex)
+	if err != nil {
+		return 1 // go to right child node
+	}
+	leftChild := leftChildRaw.(*node)
+	rightChildRaw, err := h.array.Get(rightChildIndex)
+	if err != nil {
+		return -1 // go to left child node
+	}
+	rightChild := rightChildRaw.(*node)
+	if h.direction*rightChild.priority > h.direction*leftChild.priority {
+		return 1
+	} else {
+		return -1
+	}
+}
+
 func (h *BinaryHeap) bubbleDown(index int) error {
-	// @TODO: need to implement
+	size := h.array.Size()
+	parentIndex := index
+	leftChildIndex := (parentIndex * 2) + 1
+	rightChildIndex := (parentIndex * 2) + 2
+
+	for {
+		parentNodeRaw, err := h.array.Get(parentIndex)
+		if err != nil {
+			return err
+		}
+		parentNode := parentNodeRaw.(*node)
+		compare := h.compare(leftChildIndex, rightChildIndex)
+		if compare > 0 {
+			goto right
+		} else if compare < 0 {
+			goto left
+		}
+
+	left:
+		if leftChildIndex < size {
+			leftChildNodeRaw, err := h.array.Get(leftChildIndex)
+			if err != nil {
+				return err
+			}
+			leftChildNode := leftChildNodeRaw.(*node)
+			if (h.direction * leftChildNode.priority) > (h.direction * parentNode.priority) {
+				err = h.array.Update(leftChildIndex, parentNode)
+				if err != nil {
+					return err
+				}
+				err = h.array.Update(parentIndex, leftChildNode)
+				if err != nil {
+					return err
+				}
+
+				parentIndex = leftChildIndex
+				leftChildIndex = (parentIndex * 2) + 1
+				rightChildIndex = (parentIndex * 2) + 2
+				continue
+			}
+		}
+
+	right:
+		if rightChildIndex < size {
+			rightChildNodeRaw, err := h.array.Get(rightChildIndex)
+			if err != nil {
+				return err
+			}
+			rightChildNode := rightChildNodeRaw.(*node)
+			if (h.direction * rightChildNode.priority) > (h.direction * parentNode.priority) {
+				err = h.array.Update(rightChildIndex, parentNode)
+				if err != nil {
+					return err
+				}
+				err = h.array.Update(parentIndex, rightChildNode)
+				if err != nil {
+					return err
+				}
+
+				parentIndex = rightChildIndex
+				leftChildIndex = (parentIndex * 2) + 1
+				rightChildIndex = (parentIndex * 2) + 2
+				continue
+			}
+		}
+		break
+	}
+
 	return nil
 }
 
@@ -79,12 +164,38 @@ func (h *BinaryHeap) bubbleUp(index int) error {
 }
 
 func (h *BinaryHeap) Remove(priority int) error {
-
+	// @TODO: need to implement
 	return nil
 }
 
 func (h *BinaryHeap) Update(priority int, newPriority int) error {
-	// @TODO: need to implement
+	index := 0
+	size := h.array.Size()
+	for index < size {
+		index++
+		nodeRaw, err := h.array.Get(index)
+		if err != nil {
+			return err
+		}
+		n := nodeRaw.(*node)
+
+		if n.priority == priority {
+			err = h.array.Update(index, newPriority)
+			if err != nil {
+				return err
+			}
+			if (h.direction * newPriority) > (h.direction * priority) {
+				err = h.bubbleUp(index)
+			} else {
+				err = h.bubbleDown(index)
+			}
+			if err != nil {
+				return err
+			}
+			return nil
+		}
+	}
+
 	return nil
 }
 
@@ -140,6 +251,7 @@ func (h *BinaryHeap) Peek() (interface{}, error) {
 	return node.value, nil
 }
 
+// @TODO: need to add support for multiple same-priority node insertion
 func New(elements map[int]interface{}, heapType heapType) (*BinaryHeap, error) {
 	direction := 1
 	if heapType == Min {
