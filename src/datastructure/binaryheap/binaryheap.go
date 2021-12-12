@@ -179,7 +179,55 @@ func (h *BinaryHeap) Remove(priority int) error {
 		n := nodeRaw.(*node)
 
 		if n.priority == priority {
-			// @TODO: need to implement
+			// remove root if it is the only element
+			if index == 0 && size == 1 {
+				err = h.array.Remove(index)
+				if err != nil {
+					return err
+				}
+				return nil
+			}
+
+			// remove only last element
+			if index == size-1 {
+				err = h.array.Remove(index)
+				if err != nil {
+					return err
+				}
+				return nil
+			}
+
+			lastNodeRaw, err := h.array.Get(size - 1)
+			if err != nil {
+				return err
+			}
+
+			err = h.array.Update(index, lastNodeRaw)
+			if err != nil {
+				return err
+			}
+			err = h.array.Remove(size - 1)
+			if err != nil {
+				return err
+			}
+
+			nodeRaw, err := h.array.Get(index)
+			if err != nil {
+				return err
+			}
+			n := nodeRaw.(*node)
+			if h.direction*n.priority > h.direction*priority {
+				err = h.bubbleUp(index)
+				if err != nil {
+					return err
+				}
+			} else {
+				err = h.bubbleDown(index)
+				if err != nil {
+					return err
+				}
+			}
+
 			return nil
 		}
 		index++
@@ -199,7 +247,8 @@ func (h *BinaryHeap) Update(priority int, newPriority int) error {
 		n := nodeRaw.(*node)
 
 		if n.priority == priority {
-			err = h.array.Update(index, newPriority)
+			n.priority = newPriority
+			err = h.array.Update(index, n)
 			if err != nil {
 				return err
 			}
