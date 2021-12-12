@@ -7,6 +7,7 @@ import (
 )
 
 var ErrBinaryHeapIsEmpty = fmt.Errorf("binary heap is empty")
+var ErrNotFound = fmt.Errorf("value with priority not found")
 
 type node struct {
 	priority int
@@ -164,15 +165,33 @@ func (h *BinaryHeap) bubbleUp(index int) error {
 }
 
 func (h *BinaryHeap) Remove(priority int) error {
-	// @TODO: need to implement
-	return nil
+	size := h.array.Size()
+	if size == 0 {
+		return ErrBinaryHeapIsEmpty
+	}
+
+	index := 0
+	for index < size {
+		nodeRaw, err := h.array.Get(index)
+		if err != nil {
+			return err
+		}
+		n := nodeRaw.(*node)
+
+		if n.priority == priority {
+			// @TODO: need to implement
+			return nil
+		}
+		index++
+	}
+
+	return ErrNotFound
 }
 
 func (h *BinaryHeap) Update(priority int, newPriority int) error {
 	index := 0
 	size := h.array.Size()
 	for index < size {
-		index++
 		nodeRaw, err := h.array.Get(index)
 		if err != nil {
 			return err
@@ -194,9 +213,10 @@ func (h *BinaryHeap) Update(priority int, newPriority int) error {
 			}
 			return nil
 		}
+		index++
 	}
 
-	return nil
+	return ErrNotFound
 }
 
 func (h *BinaryHeap) Top() (interface{}, error) {
