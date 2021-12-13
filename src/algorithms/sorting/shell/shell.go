@@ -1,6 +1,5 @@
 package sorting
 
-// ShellSort - shell sorting
 func ShellSort(array []int64) {
 	length := len(array)
 

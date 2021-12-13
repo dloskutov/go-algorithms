@@ -1,6 +1,5 @@
 package sorting
 
-// Selection - sort by selection
 func Selection(array []int64) {
 	length := len(array)
 

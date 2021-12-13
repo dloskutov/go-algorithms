@@ -1,12 +1,10 @@
 package sorting
 
 import (
-	"testing"
-
-	"math/rand"
-	"time"
-
 	"github.com/stretchr/testify/assert"
+	"math/rand"
+	"testing"
+	"time"
 )
 
 const MAX = 1000000
@@ -29,37 +27,9 @@ func isSorted(array []int64) bool {
 	return true
 }
 
-func TestSelection(t *testing.T) {
-	arr := generateRandomArray(1000)
-
-	Selection(arr)
-	assert.True(t, isSorted(arr))
-}
-
 func TestInsertion(t *testing.T) {
 	arr := generateRandomArray(1000)
 
 	Insertion(arr)
-	assert.True(t, isSorted(arr))
-}
-
-func TestShellSort(t *testing.T) {
-	arr := generateRandomArray(1000)
-
-	ShellSort(arr)
-	assert.True(t, isSorted(arr))
-}
-
-func TestMergeSort(t *testing.T) {
-	arr := generateRandomArray(1000)
-
-	MergeSort(arr)
-	assert.True(t, isSorted(arr))
-}
-
-func TestQuickSort(t *testing.T) {
-	arr := generateRandomArray(1000)
-
-	Quick(arr)
 	assert.True(t, isSorted(arr))
 }
