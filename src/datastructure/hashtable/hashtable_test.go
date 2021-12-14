@@ -20,6 +20,9 @@ func TestPut(t *testing.T) {
 
 	assert.Equal(t, nil, err)
 
+	err = h.Put("other", "value_3")
+	assert.Equal(t, nil, err)
+
 	err = h.Put("key", "value_1")
 	assert.Equal(t, nil, err)
 

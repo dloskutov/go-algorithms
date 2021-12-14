@@ -173,4 +173,16 @@ func TestRemove(t *testing.T) {
 		assert.Equal(t, nil, err)
 		assert.Equal(t, value, items[i])
 	}
+
+	h, err = New(map[int]interface{}{
+		1: "first",
+		2: "second",
+	}, Max)
+	assert.Equal(t, nil, err)
+
+	err = h.Remove(2)
+	assert.Equal(t, nil, err)
+
+	err = h.Remove(1)
+	assert.Equal(t, nil, err)
 }
