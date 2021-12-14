@@ -1,8 +1,9 @@
-package other
+package isprime
 
-import "testing"
-
-import "github.com/stretchr/testify/assert"
+import (
+	"github.com/stretchr/testify/assert"
+	"testing"
+)
 
 func TestIsPrime(t *testing.T) {
 	assert.Equal(t, true, IsPrime(2))

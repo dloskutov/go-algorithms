@@ -1,4 +1,4 @@
-package other
+package isprime
 
 // IsPrime - check if number is prime
 func IsPrime(n int) bool {

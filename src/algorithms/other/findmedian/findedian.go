@@ -1,4 +1,4 @@
-package other
+package findmedian
 
 import (
 	"math/rand"
