@@ -3,8 +3,8 @@ package hashtable
 import (
 	"fmt"
 
-	"github.com/dloskutov/go-algorithms/src/datastructure/array"
-	"github.com/dloskutov/go-algorithms/src/datastructure/linkedlist"
+	"github.com/dloskutov/go-algorithms/pkg/datastructures/array"
+	"github.com/dloskutov/go-algorithms/pkg/datastructures/linkedlist"
 )
 
 var ErrInvalidKey = fmt.Errorf("invalid key")

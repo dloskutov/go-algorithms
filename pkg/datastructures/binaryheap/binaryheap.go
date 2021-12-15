@@ -3,7 +3,7 @@ package binaryheap
 import (
 	"fmt"
 
-	"github.com/dloskutov/go-algorithms/src/datastructure/array"
+	"github.com/dloskutov/go-algorithms/pkg/datastructures/array"
 )
 
 var ErrBinaryHeapIsEmpty = fmt.Errorf("binary heap is empty")
