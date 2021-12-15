@@ -13,6 +13,7 @@ In computer science, a **data structure** is a data organization, management, an
 * [Binary Heap](pkg/datastructures/binaryheap)
 * [Binary Search Tree](pkg/datastructures/binarysearchtree)
 * [Bloom Filter](pkg/datastructures/bloomfilter)
+* [Prefix Tree](pkg/datastructures/prefixtree)
 
 ## Algorithms
 
