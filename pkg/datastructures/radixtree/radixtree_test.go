@@ -1,4 +1,4 @@
-package prefixtree
+package radixtree
 
 import (
 	"testing"
@@ -7,8 +7,8 @@ import (
 )
 
 func TestNew(t *testing.T) {
-	pt, err := New([]string{})
+	rt, err := New([]string{})
 
 	assert.Equal(t, nil, err)
-	assert.NotNil(t, pt)
+	assert.NotNil(t, rt)
 }
