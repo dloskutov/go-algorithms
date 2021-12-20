@@ -75,6 +75,7 @@ func (bst *BinarySearchTree) Remove(key int) error {
 		if currentNode.key == key {
 			// case 1
 			if currentNode == bst.root {
+				// @TODO: need to implement
 				return nil
 			}
 
@@ -94,6 +95,7 @@ func (bst *BinarySearchTree) Remove(key int) error {
 			}
 
 			// other cases
+			// @TODO: need to implement
 
 			return nil
 		}
