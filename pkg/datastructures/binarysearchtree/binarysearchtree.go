@@ -94,8 +94,8 @@ func (bst *BinarySearchTree) Remove(key int) error {
 				return replaceChild(parentNode, currentNode, currentNode.leftNode)
 			}
 
-			// other cases
 			// @TODO: need to implement
+			// other cases
 
 			return nil
 		}
