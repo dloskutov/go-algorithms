@@ -7,7 +7,7 @@ import (
 )
 
 func TestNew(t *testing.T) {
-	pt, err := New([]string{})
+	pt, err := New(map[string]interface{}{})
 
 	assert.Equal(t, nil, err)
 	assert.NotNil(t, pt)
