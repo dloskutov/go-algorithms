@@ -35,3 +35,15 @@ func TestGet(t *testing.T) {
 	_, err = pt.Get("invalid key")
 	assert.Equal(t, ErrInvalidKey, err)
 }
+
+func TestContains(t *testing.T) {
+	pt, err := New(map[string]interface{}{
+		"first":  1,
+		"second": 2,
+		"third":  3,
+	})
+
+	assert.Equal(t, nil, err)
+	assert.Equal(t, true, pt.Contains("first"))
+	assert.Equal(t, false, pt.Contains("other"))
+}

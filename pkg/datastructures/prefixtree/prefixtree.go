@@ -63,13 +63,36 @@ func (t *PrefixTree) Get(key string) (interface{}, error) {
 }
 
 func (t *PrefixTree) Remove(key string) error {
-	// @TODO: need to implement
-	return nil
+	if key == "" {
+		return ErrInvalidKey
+	}
+
+	index := 0
+	length := len(key)
+
+	parentNode := t.root
+	for index < length {
+		char := key[index]
+		if parentNode.children[char] != nil {
+			parentNode = parentNode.children[char]
+		} else {
+			return ErrInvalidKey
+		}
+		index++
+	}
+
+	// @TODO: need delete unused childred too!!
+	if parentNode.value != nil {
+		parentNode.value = nil
+		return nil
+	}
+
+	return ErrInvalidKey
 }
 
 func (t *PrefixTree) Contains(key string) bool {
-	// @TODO: need to implement
-	return false
+	value, err := t.Get(key)
+	return err == nil && value != nil
 }
 
 func (t *PrefixTree) FindLongestPrefix(key string) string {
