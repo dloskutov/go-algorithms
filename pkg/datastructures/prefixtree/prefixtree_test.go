@@ -45,5 +45,23 @@ func TestContains(t *testing.T) {
 
 	assert.Equal(t, nil, err)
 	assert.Equal(t, true, pt.Contains("first"))
+	assert.Equal(t, false, pt.Contains("firs"))
 	assert.Equal(t, false, pt.Contains("other"))
+}
+
+func TestRemove(t *testing.T) {
+	pt, err := New(map[string]interface{}{
+		"first":  1,
+		"second": 2,
+		"third":  3,
+	})
+
+	assert.Equal(t, nil, err)
+	assert.Equal(t, true, pt.Contains("first"))
+
+	assert.Equal(t, ErrInvalidKey, pt.Remove(""))
+	assert.Equal(t, ErrInvalidKey, pt.Remove("other"))
+	assert.Equal(t, nil, pt.Remove("first"))
+
+	assert.Equal(t, false, pt.Contains("first"))
 }
