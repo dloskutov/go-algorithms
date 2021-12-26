@@ -4,6 +4,11 @@ import "fmt"
 
 var ErrInvalidKey = fmt.Errorf("invlid key")
 
+type nodeWithPrefix struct {
+	node   *node
+	prefix string
+}
+
 type node struct {
 	symbol   byte
 	value    interface{}
@@ -101,8 +106,47 @@ func (t *PrefixTree) FindLongestPrefix(key string) string {
 }
 
 func (t *PrefixTree) KeysStartingWith(prefix string) []string {
-	// @TODO: need to implement
-	return []string{}
+	if prefix == "" {
+		return []string{}
+	}
+
+	index := 0
+	length := len(prefix)
+
+	parentNode := t.root
+	for index < length {
+		char := prefix[index]
+		if parentNode.children[char] != nil {
+			parentNode = parentNode.children[char]
+		} else {
+			return []string{}
+		}
+		index++
+	}
+
+	result := make([]string, 0)
+	nodesWithPrefix := []*nodeWithPrefix{{
+		node:   parentNode,
+		prefix: prefix[:len(prefix)-1],
+	}}
+	for len(nodesWithPrefix) != 0 {
+		lastIndex := len(nodesWithPrefix) - 1
+		n := nodesWithPrefix[lastIndex]
+
+		if n.node.value != nil {
+			result = append(result, n.prefix+string(n.node.symbol))
+		}
+
+		nodesWithPrefix = nodesWithPrefix[:lastIndex]
+		for i := range n.node.children {
+			nodesWithPrefix = append(nodesWithPrefix, &nodeWithPrefix{
+				node:   n.node.children[i],
+				prefix: n.prefix + string(n.node.symbol),
+			})
+		}
+	}
+
+	return result
 }
 
 func New(data map[string]interface{}) (*PrefixTree, error) {
