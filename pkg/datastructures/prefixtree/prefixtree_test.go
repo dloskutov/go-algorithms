@@ -92,3 +92,19 @@ func TestKeysStartingWith(t *testing.T) {
 	result = pt.KeysStartingWith("thi")
 	assert.Equal(t, []string{"third"}, result)
 }
+
+func TestFindLongestPrefix(t *testing.T) {
+	pt, err := New(map[string]interface{}{
+		"first":    1,
+		"second":   2,
+		"third":    3,
+		"fist":     4,
+		"fresh":    5,
+		"preview":  9,
+		"previous": 10,
+		"prepare":  12,
+	})
+
+	assert.Equal(t, nil, err)
+	assert.Equal(t, "previous", pt.FindLongestPrefix("pre"))
+}

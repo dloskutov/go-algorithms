@@ -100,9 +100,22 @@ func (t *PrefixTree) Contains(key string) bool {
 	return err == nil && value != nil
 }
 
+// @TODO: is it the right implementation?
 func (t *PrefixTree) FindLongestPrefix(key string) string {
-	// @TODO: need to implement
-	return ""
+	result := t.KeysStartingWith(key)
+
+	if len(result) == 0 {
+		return ""
+	}
+
+	index := 0
+	for i := range result {
+		if len(result[i]) > len(result[index]) {
+			index = i
+		}
+	}
+
+	return result[index]
 }
 
 func (t *PrefixTree) KeysStartingWith(prefix string) []string {
