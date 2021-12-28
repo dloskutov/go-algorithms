@@ -1,4 +1,4 @@
-package sorting
+package merge
 
 import (
 	"github.com/stretchr/testify/assert"
@@ -27,9 +27,9 @@ func isSorted(array []int64) bool {
 	return true
 }
 
-func TestMergeSort(t *testing.T) {
+func TestSort(t *testing.T) {
 	arr := generateRandomArray(1000)
 
-	MergeSort(arr)
+	Sort(arr)
 	assert.True(t, isSorted(arr))
 }

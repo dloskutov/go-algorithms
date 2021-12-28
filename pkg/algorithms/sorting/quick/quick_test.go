@@ -1,4 +1,4 @@
-package sorting
+package quick
 
 import (
 	"github.com/stretchr/testify/assert"
@@ -27,9 +27,9 @@ func isSorted(array []int64) bool {
 	return true
 }
 
-func TestQuickSort(t *testing.T) {
+func TestSort(t *testing.T) {
 	arr := generateRandomArray(1000)
 
-	Quick(arr)
+	Sort(arr)
 	assert.True(t, isSorted(arr))
 }

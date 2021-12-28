@@ -1,6 +1,6 @@
-package sorting
+package selection
 
-func Selection(array []int64) {
+func Sort(array []int64) {
 	length := len(array)
 
 	for i := 0; i < length; i++ {

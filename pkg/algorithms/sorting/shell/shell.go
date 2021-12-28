@@ -1,6 +1,6 @@
-package sorting
+package shell
 
-func ShellSort(array []int64) {
+func Sort(array []int64) {
 	length := len(array)
 
 	var step = 1

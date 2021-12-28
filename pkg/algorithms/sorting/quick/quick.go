@@ -1,7 +1,6 @@
-package sorting
+package quick
 
-// Quick - quick sort in situ
-func Quick(array []int64) {
+func Sort(array []int64) {
 	quick(array, 0, len(array)-1)
 }
 

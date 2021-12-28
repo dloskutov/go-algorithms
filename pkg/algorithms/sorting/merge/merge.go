@@ -1,7 +1,6 @@
-package sorting
+package merge
 
-// MergeSort - shell sorting
-func MergeSort(array []int64) {
+func Sort(array []int64) {
 	arrayCopy := make([]int64, 0)
 	arrayCopy = append(arrayCopy, array...)
 

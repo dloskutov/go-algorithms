@@ -28,9 +28,10 @@ func isSorted(array []int64) bool {
 	return true
 }
 
-func TestInsertion(t *testing.T) {
+func TestSort(t *testing.T) {
 	arr := generateRandomArray(1000)
 
-	Sort(arr)
+	err := Sort(arr)
+	assert.Equal(t, nil, err)
 	assert.True(t, isSorted(arr))
 }

@@ -1,4 +1,4 @@
-package sorting
+package selection
 
 import (
 	"github.com/stretchr/testify/assert"
@@ -27,9 +27,9 @@ func isSorted(array []int64) bool {
 	return true
 }
 
-func TestSelection(t *testing.T) {
+func TestSort(t *testing.T) {
 	arr := generateRandomArray(1000)
 
-	Selection(arr)
+	Sort(arr)
 	assert.True(t, isSorted(arr))
 }
