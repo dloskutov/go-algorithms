@@ -1,4 +1,4 @@
-package insertion
+package heap
 
 import (
 	"math/rand"
