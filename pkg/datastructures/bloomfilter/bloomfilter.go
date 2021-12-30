@@ -1,27 +1,43 @@
 package bloomfilter
 
+const countOfBitsInByte = 8
+
 var hashMods = []int{167, 193, 199}
 
 type BloomFilter struct {
-	bits     []bool // @TODO: convert to bits
+	max      int
+	bits     []byte
 	hashMods []int
 }
 
 func (b *BloomFilter) Insert(key string) {
 	for i := range b.hashMods {
 		index := hash(key, b.hashMods[i])
-		b.bits[index] = true
+		b.setBit(index)
 	}
 }
 
 func (b *BloomFilter) Contains(key string) bool {
 	for i := range b.hashMods {
 		index := hash(key, b.hashMods[i])
-		if !b.bits[index] {
+		if !b.isSet(index) {
 			return false
 		}
 	}
 	return true
+}
+
+func (b *BloomFilter) setBit(index int) {
+	bytePosition := index / countOfBitsInByte
+	offset := index - bytePosition*countOfBitsInByte
+	b.bits[bytePosition] = b.bits[bytePosition] | (1 << offset)
+}
+
+func (b *BloomFilter) isSet(index int) bool {
+	bytePosition := index / countOfBitsInByte
+	offset := index - bytePosition*countOfBitsInByte
+	var value byte = 1 << offset
+	return b.bits[bytePosition]&value == value
 }
 
 func New() *BloomFilter {
@@ -32,7 +48,8 @@ func New() *BloomFilter {
 		}
 	}
 	return &BloomFilter{
-		bits:     make([]bool, max),
+		max:      max,
+		bits:     make([]byte, max/countOfBitsInByte+1),
 		hashMods: hashMods,
 	}
 }
