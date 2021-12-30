@@ -51,9 +51,12 @@ func TestContains(t *testing.T) {
 
 func TestRemove(t *testing.T) {
 	pt, err := New(map[string]interface{}{
-		"first":  1,
-		"second": 2,
-		"third":  3,
+		"first":    1,
+		"second":   2,
+		"third":    3,
+		"previous": 5,
+		"prepare":  6,
+		"pre":      7,
 	})
 
 	assert.Equal(t, nil, err)
@@ -64,6 +67,12 @@ func TestRemove(t *testing.T) {
 	assert.Equal(t, nil, pt.Remove("first"))
 
 	assert.Equal(t, false, pt.Contains("first"))
+
+	assert.Equal(t, nil, pt.Remove("previous"))
+	assert.Equal(t, true, pt.Contains("prepare"))
+	assert.Equal(t, nil, pt.Remove("prepare"))
+	assert.Equal(t, true, pt.Contains("pre"))
+	assert.Equal(t, nil, pt.Remove("pre"))
 }
 
 func TestKeysStartingWith(t *testing.T) {

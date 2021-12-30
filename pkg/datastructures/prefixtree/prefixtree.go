@@ -86,9 +86,12 @@ func (t *PrefixTree) Remove(key string) error {
 		index++
 	}
 
-	// @TODO: need delete unused childred too!!
 	if parentNode.value != nil {
 		parentNode.value = nil
+		otherKeys := t.KeysStartingWith(key)
+		if len(otherKeys) == 0 {
+			parentNode.children = make(map[byte]*node)
+		}
 		return nil
 	}
 
