@@ -27,6 +27,7 @@ In mathematics and computer science, an **algorithm** is a finite sequence of we
 * [Shell](pkg/algorithms/sorting/shell)
 * [Merge](pkg/algorithms/sorting/merge)
 * [Quick](pkg/algorithms/sorting/quick)
+* [Heap](pkg/algorithms/sorting/heap)
 
 #### Other
 
