@@ -1,6 +1,5 @@
 package isprime
 
-// IsPrime - check if number is prime
 func IsPrime(n int) bool {
 	if n < 2 {
 		return false

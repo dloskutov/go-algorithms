@@ -2,7 +2,6 @@ package sqrt
 
 import "math"
 
-// Sqrt - calculate square root
 func Sqrt(value float64) float64 {
 	if value < 0 {
 		return math.NaN()
