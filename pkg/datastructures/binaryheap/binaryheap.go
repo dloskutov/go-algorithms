@@ -6,8 +6,10 @@ import (
 	"github.com/dloskutov/go-algorithms/pkg/datastructures/array"
 )
 
-var ErrBinaryHeapIsEmpty = fmt.Errorf("binary heap is empty")
-var ErrNotFound = fmt.Errorf("value with priority not found")
+var (
+	ErrBinaryHeapIsEmpty = fmt.Errorf("binary heap is empty")
+	ErrNotFound          = fmt.Errorf("value with priority not found")
+)
 
 type node struct {
 	priority int
