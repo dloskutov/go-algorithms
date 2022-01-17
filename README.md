@@ -15,8 +15,8 @@ In computer science, a **data structure** is a data organization, management, an
 * [Bloom Filter](pkg/datastructures/bloomfilter)
 * [Radix Tree](pkg/datastructures/radixtree)
 * [Prefix Tree](pkg/datastructures/prefixtree)
-* [2d-Tree](pkg/datastructures/2d-tree)
 * [R-Tree](pkg/datastructures/r-tree)
+* [2d-Tree](pkg/datastructures/2d-tree)
 
 ## Algorithms
 
